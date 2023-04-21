@@ -85,6 +85,7 @@ public class QueueThingy <T> {
             }
         }
 
+        System.out.println();
         System.out.println("The maximum number of customers at any time was: " + maxCustomers);
         System.out.println("The longest wait was: " + longestWait);
         System.out.println("Total customers: " + totalCustomers);
