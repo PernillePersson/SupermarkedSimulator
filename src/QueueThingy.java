@@ -51,9 +51,12 @@ public class QueueThingy <T> {
         int currentCustomers = 0;
         int longestWait = 0;
 
+        int totalCustomers = 0;
+
         QueueThingy<Integer> customers = new QueueThingy<>();
         int customerArrival = r.nextInt(arrivalInterval - 1) + 1;
-        for(int i  = 0;i<time;i++) {
+
+        for(int i = 0; i<time; i++) {
             if(i == customerArrival) {
                 System.out.println("A customer arrived.");
                 if(!customers.isEmpty()) customers.enqueue(i);
@@ -62,6 +65,7 @@ public class QueueThingy <T> {
                     if(doneAt - i>longestWait) longestWait = doneAt - i;
                     customers.enqueue(doneAt);
                 }
+                totalCustomers++;
                 currentCustomers++;
                 if(currentCustomers>maxCustomers) maxCustomers = currentCustomers;
                 customerArrival = i + r.nextInt(arrivalInterval - 1) + 1;
@@ -81,7 +85,9 @@ public class QueueThingy <T> {
             }
         }
 
-        System.out.println("The maximum number of cusotmers at any time was: " + maxCustomers);
+        System.out.println("The maximum number of customers at any time was: " + maxCustomers);
         System.out.println("The longest wait was: " + longestWait);
+        System.out.println("Total customers: " + totalCustomers);
+        System.out.println("Average amount of customers served: " + ((double)totalCustomers) / 12);
     }
 }
